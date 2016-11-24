@@ -5,13 +5,13 @@ Generally, a button has only two available values: hit and unhit, which means we
 
 But in many cases, I would like to input as many values as I want in the testing. That's why I make this project.
 
-With this project, actually it's only a set of .c and .h files, firmware needs to provide a set of command and handler, user input the command in UART terminal and firmware executes the handler.
+With this project, actually it's only a set of .c and .h files, firmware needs to provide a set of command and handler, user inputs the command in UART terminal and firmware executes the handler.
 
 ## Usage
 
 The basic usage is:
 
-> `@` `command_string` `=` `command_parameter` `\n`
+`@` `command_string` `=` `command_parameter` `\n`
 
 A command is a string with the length less than 5 bytes.
 
@@ -33,7 +33,7 @@ In the UART terminal, if typing `@APP1=123456`, then appHandler1 will be invoked
 
 ![Command parser](./ucmd-cmd_parser.png)
 
-If typing a stirng without `@` prefix, we can see echo string:
+If typing a stirng without `@` prefix, we can see the echo string:
 
 ![Message echo](./ucmd-message.png)
 
@@ -43,7 +43,7 @@ UART is the core of this system. It monitors the input byte stream continousely 
 
 ![work flow](./ucmd-flow.png)
 
-- Uart Monitor: It's an rx interrupt.
+- Uart Monitor: It's the UART RX interrupt.
 - Parser cmd: Once it find a command, push it to a task queue. So it has potential to process complex task which may consume multiple steps.
 - Run cmd: It's nothing, but in the background, it implements a simple event-listener design mode.
 
